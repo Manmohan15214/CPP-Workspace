@@ -17,40 +17,44 @@ int main()
     {
         int n;
         cin >> n;
+        char last;
+        unordered_set<char> ch;
         unordered_set<string> words;
         while (n--)
         {
             string str;
             cin >> str;
+            ch.insert(str[0]);
             words.insert(str);
         }
 
-        int count = 0;
-
-        for (auto it = words.begin(); it != words.end(); ++it)
+        if (ch.size() == 1)
         {
+            cout << 0 << "\n";
+        }
+        else
+        {
+            int count = 0;
 
-            for (auto it2 = next(it); it2 != words.end(); it2++)
+            for (auto it = words.begin(); it != words.end(); ++it)
             {
-                char f1 = it->front();
-                char f2 = it2->front();
-                string rem1 = it->substr(1, it->size());
-                string rem2 = it2->substr(1, it2->size());
 
-                if ((f1 == f2) || (rem1 == rem2))
+                for (auto it2 = next(it); it2 != words.end(); it2++)
                 {
-                    continue;
-                }
-                else
-                {
-                    if (words.find(f1 + rem2) == words.end() && words.find(f2 + rem1) == words.end())
+                    string newS1 = *it;
+                    string newS2 = *it2;
+                    if (newS1[0] != newS2[0] && newS1.substr(1, newS1.size()) != newS2.substr(1, newS2.size()))
                     {
-                        count += 2;
+                        swap(newS1[0], newS2[0]);
+                        if (words.find(newS1) == words.end() && words.find(newS2) == words.end())
+                        {
+                            count += 2;
+                        }
                     }
                 }
             }
-        }
 
-        cout << count << "\n";
+            cout << count << "\n";
+        }
     }
 }
