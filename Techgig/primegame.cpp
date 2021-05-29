@@ -7,6 +7,7 @@
 #include <map>
 #include <cmath>
 #include <iterator>
+#include<climits>
 using namespace std;
 typedef long long ll;
 
@@ -34,8 +35,17 @@ int main()
         {
             if (isPrime(i))
             {
-                minP = min(minP, i);
-                maxP = max(maxP, i);
+                    minP = min(minP, i);
+                    break;
+            }
+        }
+
+        for (int j = r2; j >= r1; j--)
+        {
+            if (isPrime(j))
+            {
+                maxP = max(maxP, j);
+                break;
             }
         }
 
