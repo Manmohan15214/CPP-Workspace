@@ -1,5 +1,5 @@
 /*
-* The code below isnt accepted on Codeforces because of memory limit. (256 MB)   
+* The code is now accepted because of pass by reference in the function which enables TCO (tail call * optimization).   
 */
 
 //#include <bits/stdc++.h>
@@ -13,7 +13,7 @@
 using namespace std;
 typedef long long ll;
 
-void getSum(vector<vector<int>> matA, vector<vector<int>> matB, int r, int c)
+void getSum(vector<vector<int>> &matA, vector<vector<int>> &matB, int r, int c)
 {
     if ((r == matA.size() - 1) && (c == matA[0].size() - 1))
     {
